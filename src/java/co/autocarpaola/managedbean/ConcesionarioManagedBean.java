@@ -1,5 +1,7 @@
 package co.autocarpaola.managedbean;
 
+
+
 import co.autocarpaola.entity.Concesionario;
 import co.autocarpaola.sessionbeans.ConcesionarioFacadeLocal;
 import javax.ejb.EJB;
@@ -13,9 +15,10 @@ import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
 
 
-@Named(value = "consesionarioManagedBean")
+
+@Named(value = "concesionarioManagedBean")
 @RequestScoped
-public class ConsesionarioManagedBean implements Serializable {
+public class ConcesionarioManagedBean implements Serializable {
     @EJB
     private ConcesionarioFacadeLocal ConcesionarioEJB;
     
@@ -23,7 +26,7 @@ public class ConsesionarioManagedBean implements Serializable {
     
     private String accion;
     
-    public ConsesionarioManagedBean() {
+    public ConcesionarioManagedBean() {
     }
 
     public Concesionario getConcesionario() {
@@ -33,7 +36,7 @@ public class ConsesionarioManagedBean implements Serializable {
     public void setConcesionario(Concesionario concesionario) {
         this.concesionario = concesionario;
     }
-    
+
     public String getAccion() {
         return accion;
     }
@@ -42,12 +45,13 @@ public class ConsesionarioManagedBean implements Serializable {
         this.accion = accion;
     }
 
+    
     @PostConstruct
     public void init() {
        concesionario = new Concesionario();
     }
     
-    public void  registroConcesioanrio (){
+    public void  registroConcesionario (){
         try{
             ConcesionarioEJB.create(concesionario);
             manejarExito ("Registrar");
@@ -68,9 +72,9 @@ public class ConsesionarioManagedBean implements Serializable {
         }
         return null;
     }
-     public void elimarConcesioanrio (Concesionario con){
+     public void elimarConcesionario (Concesionario conc){
         try {
-            ConcesionarioEJB.remove(con);
+            ConcesionarioEJB.remove(conc);
             manejarExito("Eliminado");
         }catch (Exception e){
             manejarError (e);
@@ -83,7 +87,7 @@ public class ConsesionarioManagedBean implements Serializable {
     public void modificar (){
         
           try {
-             ConcesionarioEJB.edit(concesionario);
+            ConcesionarioEJB.edit(concesionario);
             manejarExito("Editado");
         }catch (Exception e){
             manejarError (e);
