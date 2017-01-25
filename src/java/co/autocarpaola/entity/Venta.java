@@ -3,15 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entity;
+package co.autocarpaola.entity;
 
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -25,21 +23,21 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author yo
+ * @author USUARIO
  */
 @Entity
 @Table(name = "ventas")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Ventas.findAll", query = "SELECT v FROM Ventas v")
-    , @NamedQuery(name = "Ventas.findByIdVenta", query = "SELECT v FROM Ventas v WHERE v.idVenta = :idVenta")
-    , @NamedQuery(name = "Ventas.findByFecha", query = "SELECT v FROM Ventas v WHERE v.fecha = :fecha")})
-public class Ventas implements Serializable {
+    @NamedQuery(name = "Venta.findAll", query = "SELECT v FROM Venta v")
+    , @NamedQuery(name = "Venta.findByIdVenta", query = "SELECT v FROM Venta v WHERE v.idVenta = :idVenta")
+    , @NamedQuery(name = "Venta.findByFecha", query = "SELECT v FROM Venta v WHERE v.fecha = :fecha")})
+public class Venta implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
+    @NotNull
     @Column(name = "idVenta")
     private Integer idVenta;
     @Basic(optional = false)
@@ -54,14 +52,14 @@ public class Ventas implements Serializable {
     @ManyToOne(optional = false)
     private Vehiculo idVehiculo;
 
-    public Ventas() {
+    public Venta() {
     }
 
-    public Ventas(Integer idVenta) {
+    public Venta(Integer idVenta) {
         this.idVenta = idVenta;
     }
 
-    public Ventas(Integer idVenta, Date fecha) {
+    public Venta(Integer idVenta, Date fecha) {
         this.idVenta = idVenta;
         this.fecha = fecha;
     }
@@ -108,10 +106,10 @@ public class Ventas implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Ventas)) {
+        if (!(object instanceof Venta)) {
             return false;
         }
-        Ventas other = (Ventas) object;
+        Venta other = (Venta) object;
         if ((this.idVenta == null && other.idVenta != null) || (this.idVenta != null && !this.idVenta.equals(other.idVenta))) {
             return false;
         }
@@ -120,7 +118,7 @@ public class Ventas implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Ventas[ idVenta=" + idVenta + " ]";
+        return "co.autocarpaola.entity.Venta[ idVenta=" + idVenta + " ]";
     }
     
 }

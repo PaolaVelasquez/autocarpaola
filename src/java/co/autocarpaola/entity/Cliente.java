@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entity;
+package co.autocarpaola.entity;
 
 import java.io.Serializable;
 import java.util.List;
@@ -23,25 +23,25 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author yo
+ * @author USUARIO
  */
 @Entity
-@Table(name = "concesionario")
+@Table(name = "cliente")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Concesionario.findAll", query = "SELECT c FROM Concesionario c")
-    , @NamedQuery(name = "Concesionario.findByNit", query = "SELECT c FROM Concesionario c WHERE c.nit = :nit")
-    , @NamedQuery(name = "Concesionario.findByNombre", query = "SELECT c FROM Concesionario c WHERE c.nombre = :nombre")
-    , @NamedQuery(name = "Concesionario.findByTelefono", query = "SELECT c FROM Concesionario c WHERE c.telefono = :telefono")
-    , @NamedQuery(name = "Concesionario.findByDireccion", query = "SELECT c FROM Concesionario c WHERE c.direccion = :direccion")})
-public class Concesionario implements Serializable {
+    @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c")
+    , @NamedQuery(name = "Cliente.findByIdCliente", query = "SELECT c FROM Cliente c WHERE c.idCliente = :idCliente")
+    , @NamedQuery(name = "Cliente.findByNombre", query = "SELECT c FROM Cliente c WHERE c.nombre = :nombre")
+    , @NamedQuery(name = "Cliente.findByTelefono", query = "SELECT c FROM Cliente c WHERE c.telefono = :telefono")
+    , @NamedQuery(name = "Cliente.findByDireccion", query = "SELECT c FROM Cliente c WHERE c.direccion = :direccion")})
+public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "nit")
-    private Integer nit;
+    @Column(name = "idCliente")
+    private Integer idCliente;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
@@ -49,37 +49,36 @@ public class Concesionario implements Serializable {
     private String nombre;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 25)
     @Column(name = "telefono")
-    private String telefono;
+    private int telefono;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 25)
+    @Size(min = 1, max = 50)
     @Column(name = "direccion")
     private String direccion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codigoConcesionario")
-    private List<Vehiculo> vehiculoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCliente")
+    private List<Venta> ventaList;
 
-    public Concesionario() {
+    public Cliente() {
     }
 
-    public Concesionario(Integer nit) {
-        this.nit = nit;
+    public Cliente(Integer idCliente) {
+        this.idCliente = idCliente;
     }
 
-    public Concesionario(Integer nit, String nombre, String telefono, String direccion) {
-        this.nit = nit;
+    public Cliente(Integer idCliente, String nombre, int telefono, String direccion) {
+        this.idCliente = idCliente;
         this.nombre = nombre;
         this.telefono = telefono;
         this.direccion = direccion;
     }
 
-    public Integer getNit() {
-        return nit;
+    public Integer getIdCliente() {
+        return idCliente;
     }
 
-    public void setNit(Integer nit) {
-        this.nit = nit;
+    public void setIdCliente(Integer idCliente) {
+        this.idCliente = idCliente;
     }
 
     public String getNombre() {
@@ -90,11 +89,11 @@ public class Concesionario implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getTelefono() {
+    public int getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(String telefono) {
+    public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
 
@@ -107,29 +106,29 @@ public class Concesionario implements Serializable {
     }
 
     @XmlTransient
-    public List<Vehiculo> getVehiculoList() {
-        return vehiculoList;
+    public List<Venta> getVentaList() {
+        return ventaList;
     }
 
-    public void setVehiculoList(List<Vehiculo> vehiculoList) {
-        this.vehiculoList = vehiculoList;
+    public void setVentaList(List<Venta> ventaList) {
+        this.ventaList = ventaList;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (nit != null ? nit.hashCode() : 0);
+        hash += (idCliente != null ? idCliente.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Concesionario)) {
+        if (!(object instanceof Cliente)) {
             return false;
         }
-        Concesionario other = (Concesionario) object;
-        if ((this.nit == null && other.nit != null) || (this.nit != null && !this.nit.equals(other.nit))) {
+        Cliente other = (Cliente) object;
+        if ((this.idCliente == null && other.idCliente != null) || (this.idCliente != null && !this.idCliente.equals(other.idCliente))) {
             return false;
         }
         return true;
@@ -137,7 +136,7 @@ public class Concesionario implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Concesionario[ nit=" + nit + " ]";
+        return "co.autocarpaola.entity.Cliente[ idCliente=" + idCliente + " ]";
     }
     
 }

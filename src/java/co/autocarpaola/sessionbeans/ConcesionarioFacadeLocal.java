@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sessionbeans;
+package co.autocarpaola.sessionbeans;
 
-import entity.Concesionario;
+import co.autocarpaola.entity.Concesionario;
 import java.util.List;
 import javax.ejb.Local;
 
 /**
  *
- * @author yo
+ * @author USUARIO
  */
 @Local
 public interface ConcesionarioFacadeLocal {

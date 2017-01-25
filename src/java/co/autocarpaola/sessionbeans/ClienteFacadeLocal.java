@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sessionbeans;
+package co.autocarpaola.sessionbeans;
 
-import entity.Cliente;
+import co.autocarpaola.entity.Cliente;
 import java.util.List;
 import javax.ejb.Local;
 
 /**
  *
- * @author yo
+ * @author USUARIO
  */
 @Local
 public interface ClienteFacadeLocal {
@@ -29,7 +29,5 @@ public interface ClienteFacadeLocal {
     List<Cliente> findRange(int[] range);
 
     int count();
-
-    public List<Cliente> create(List<Cliente> cliente);
     
 }

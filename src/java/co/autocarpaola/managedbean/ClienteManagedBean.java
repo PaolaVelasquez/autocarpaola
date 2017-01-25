@@ -1,7 +1,7 @@
-package managedbean;
+package co.autocarpaola.managedbean;
 
-
-import entity.Concesionario;
+import co.autocarpaola.entity.Cliente;
+import co.autocarpaola.sessionbeans.ClienteFacadeLocal;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -11,28 +11,27 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
-import sessionbeans.ConcesionarioFacadeLocal;
 
 
-@Named(value = "concesionarioManagedBean")
+@Named(value = "clienteManagedBean")
 @RequestScoped
-public class ConcesionarioManagedBean implements Serializable {
+public class ClienteManagedBean implements Serializable {
     @EJB
-    private ConcesionarioFacadeLocal ConcesionarioEJB;
+    private ClienteFacadeLocal ClienteEJB;
     
-    private Concesionario concesionario;
+    private Cliente cliente;
     
     private String accion;
     
-    public ConcesionarioManagedBean() {
+    public ClienteManagedBean() {
     }
 
-    public Concesionario getConcesionario() {
-        return concesionario;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setConcesionario(Concesionario concesionario) {
-        this.concesionario = concesionario;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public String getAccion() {
@@ -43,15 +42,14 @@ public class ConcesionarioManagedBean implements Serializable {
         this.accion = accion;
     }
 
-    
     @PostConstruct
     public void init() {
-       concesionario = new Concesionario();
+       cliente = new Cliente();
     }
     
-    public void  registroConcesionario (){
+    public void  registroCliente (){
         try{
-            ConcesionarioEJB.create(concesionario);
+            ClienteEJB.create(cliente);
             manejarExito ("Registrar");
         }catch (Exception e){
             manejarError (e);
@@ -62,30 +60,30 @@ public class ConcesionarioManagedBean implements Serializable {
         return "listar";
     }
     
-    public List<Concesionario> getCon(){
+    public List<Cliente> getClie(){
         try{
-            return this.ConcesionarioEJB.findAll();
+            return this.ClienteEJB.findAll();
         }catch (Exception e) {
             manejarError(e);
         }
         return null;
     }
-     public void elimarConcesionario (Concesionario conc){
+     public void elimarCliente (Cliente cli){
         try {
-            ConcesionarioEJB.remove(conc);
+            ClienteEJB.remove(cli);
             manejarExito("Eliminado");
         }catch (Exception e){
             manejarError (e);
         }
     }
-    public void leer(Concesionario leerConcesionario){
-        concesionario = leerConcesionario;
+    public void leer(Cliente leerCliente){
+        cliente = leerCliente;
         this.setAccion("M");
     }
     public void modificar (){
         
           try {
-            ConcesionarioEJB.edit(concesionario);
+             ClienteEJB.edit(cliente);
             manejarExito("Editado");
         }catch (Exception e){
             manejarError (e);

@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sessionbeans;
+package co.autocarpaola.sessionbeans;
 
-import entity.Concesionario;
+import co.autocarpaola.entity.Concesionario;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author yo
+ * @author USUARIO
  */
 @Stateless
 public class ConcesionarioFacade extends AbstractFacade<Concesionario> implements ConcesionarioFacadeLocal {

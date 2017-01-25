@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entity;
+package co.autocarpaola.entity;
 
 import java.io.Serializable;
 import java.util.List;
@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author yo
+ * @author USUARIO
  */
 @Entity
 @Table(name = "vehiculo")
@@ -58,7 +58,7 @@ public class Vehiculo implements Serializable {
     @Column(name = "precio")
     private double precio;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVehiculo")
-    private List<Ventas> ventasList;
+    private List<Venta> ventaList;
     @JoinColumn(name = "codigoConcesionario", referencedColumnName = "nit")
     @ManyToOne(optional = false)
     private Concesionario codigoConcesionario;
@@ -110,12 +110,12 @@ public class Vehiculo implements Serializable {
     }
 
     @XmlTransient
-    public List<Ventas> getVentasList() {
-        return ventasList;
+    public List<Venta> getVentaList() {
+        return ventaList;
     }
 
-    public void setVentasList(List<Ventas> ventasList) {
-        this.ventasList = ventasList;
+    public void setVentaList(List<Venta> ventaList) {
+        this.ventaList = ventaList;
     }
 
     public Concesionario getCodigoConcesionario() {
@@ -148,7 +148,7 @@ public class Vehiculo implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Vehiculo[ codigoVehiculo=" + codigoVehiculo + " ]";
+        return "co.autocarpaola.entity.Vehiculo[ codigoVehiculo=" + codigoVehiculo + " ]";
     }
     
 }

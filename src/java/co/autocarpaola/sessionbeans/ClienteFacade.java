@@ -3,19 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sessionbeans;
+package co.autocarpaola.sessionbeans;
 
-import entity.Ventas;
+import co.autocarpaola.entity.Cliente;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author yo
+ * @author USUARIO
  */
 @Stateless
-public class VentasFacade extends AbstractFacade<Ventas> implements VentasFacadeLocal {
+public class ClienteFacade extends AbstractFacade<Cliente> implements ClienteFacadeLocal {
 
     @PersistenceContext(unitName = "autocarpaolaPU")
     private EntityManager em;
@@ -25,8 +25,8 @@ public class VentasFacade extends AbstractFacade<Ventas> implements VentasFacade
         return em;
     }
 
-    public VentasFacade() {
-        super(Ventas.class);
+    public ClienteFacade() {
+        super(Cliente.class);
     }
     
 }
