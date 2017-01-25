@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+>      
+    <h:head>
+        <title> Clientes </title>
+    </h:head> 
+    <h:body>
+        <h:form>
+            <h:messages errorClass="error" showDetail="true"
+                        showSummary="true" warnStyle="color: blue"
+                        infoStyle="color: green" errorStyle="color: red"/>   
+            <p:panel header="Tabla Clientes">  
+                
+                <p:dataTable id="cli" var="cliente" value="#{clienteManagedBean.clie}" emptyMessage="No se encontraron registros" paginator="true" rows="8" paginatorPosition="bottom" paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
+                    <p:column  headerText="Id Cliente" id="txtid" filterBy="#{cliente.idCliente}" filterMatchMode="conta" >
+                        <h:outputText  value="#{cliente.idCliente}" />
+                    </p:column>
+
+                    <p:column headerText="Nombre" id="txtnombre" filterBy="#{cliente.nombre}" filterMatchMode="contains">
+                        <h:outputText value="#{cliente.nombre}" />
+                    </p:column>
+
+                    <p:column headerText="Telefono" id="txttelefono" filterBy="#{cliente.telefono}" filterMatchMode="contains">
+                        <h:outputText value="#{cliente.telefono}" />
+                    </p:column>
+
+                    <p:column headerText="Dirección" id="txtdireccion" filterBy="#{cliente.direccion}" filterMatchMode="contains">
+                        <h:outputText value="#{cliente.direccion}" />
+                    </p:column>
+
+                    <p:column headerText="Acción" exportable="false" width="30%">
+                        <p:commandButton value="Borrar" styleClass="ui-confirmdialog-no" icon="ui-icon-trash" action="#{clienteManagedBean.elimarCliente(cliente)}"/>
+                        <p:commandButton value="Modificar" styleClass="ui-confirmdialog-no" icon="ui-icon-pencil" action="editarCliente" actionListener="#{clienteManagedBean.leer(cliente)}"/>
+                    </p:column>
+                </p:dataTable>
+            </p:panel>
+
+            <p:panel>
+                <p:commandButton id="registroCommand" value="Registrar Cliente" action="registrarCliente"/>
+            </p:panel>
+
+            <p:panel header="Exportar Tabla">
+                
+                <h:commandLink>
+                    <h:graphicImage value="/imgs/pdf.png" alt="Descargar en PDF" width="44" />
+                    <p:dataExporter type="pdf" target="cli" fileName="Clientes" />
+                </h:commandLink>
+
+                <h:commandLink>
+                    <h:graphicImage value="/imgs/excel.png" alt="Descargar en excel" width="44"/>
+                    <p:dataExporter type="xls" target="cli" fileName="Clientes"/>
+                </h:commandLink>
+                
+            </p:panel>
+        </h:form>
+
+    </h:body>
+
+</html>
