@@ -3,48 +3,49 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
->      
+      xmlns:p="http://primefaces.org/ui">      
     <h:head>
         <title> Concesionario </title>
     </h:head> 
+
     <h:body>
         <h:form>
             <h:messages errorClass="error" showDetail="true"
                         showSummary="true" warnStyle="color: blue"
                         infoStyle="color: green" errorStyle="color: red"/>   
             <p:panel header="Tabla Concesionario">  
-                
-                <p:dataTable id="con" var="concesionario" value="#{concesionarioManagedBean.con}" emptyMessage="No se encontraron registros" paginator="true" rows="8" paginatorPosition="bottom" paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
-                    <p:column  headerText="NIT" id="txtid" filterBy="#{concesionario.nit}" filterMatchMode="conta" >
-                        <h:outputText  value="#{concesionario.nit}" />
-                    </p:column>
 
-                    <p:column headerText="Nombre" id="txtnombre" filterBy="#{concesionario.nombre}" filterMatchMode="contains">
+                <p:dataTable id="con" var="concesionario" value="#{concesionarioManagedBean.con}" emptyMessage="No se encontraron registros" paginator="true" rows="8" paginatorPosition="bottom" paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
+
+                    <p:column  headerText="NIT" id="txtnit" filterMatchMode="contains" >
+                        <h:outputText value="#{concesionario.nit}" />
+                    </p:column>
+                    
+                    <p:column  headerText="Nombre" id="txtnombre" filterMatchMode="contains" >
                         <h:outputText value="#{concesionario.nombre}" />
                     </p:column>
-
-                    <p:column headerText="Telefono" id="txttelefono" filterBy="#{concesionario.telefono}" filterMatchMode="contains">
+                    
+                    <p:column  headerText="Telefono" id="txttelefono" filterMatchMode="contains" >
                         <h:outputText value="#{concesionario.telefono}" />
                     </p:column>
-
-                    <p:column headerText="Dirección" id="txtdireccion" filterBy="#{concesionario.direccion}" filterMatchMode="contains">
+                    
+                    <p:column  headerText="Direccion" id="txtdireccion" filterMatchMode="contains" >
                         <h:outputText value="#{concesionario.direccion}" />
                     </p:column>
 
                     <p:column headerText="Acción" exportable="false" width="30%">
                         <p:commandButton value="Borrar" styleClass="ui-confirmdialog-no" icon="ui-icon-trash" action="#{concesionarioManagedBean.elimarConcesionario(concesionario)}"/>
-                        <p:commandButton value="Modificar" styleClass="ui-confirmdialog-no" icon="ui-icon-pencil" action="editarConcesionario" actionListener="#{concesionarioManagedBean.leer(concesionario)}"/>
+                        <p:commandButton value="Modificar" styleClass="ui-confirmdialog-no" icon="ui-icon-pencil" action="ConcesionarioEditar" actionListener="#{concesionarioManagedBean.leer(concesionario)}"/>
                     </p:column>
                 </p:dataTable>
             </p:panel>
 
             <p:panel>
-                <p:commandButton id="registroCommand" value="Registrar Concesionario" action="registrarConcesionario"/>
+                <p:commandButton id="registroCommand" value="Registrar Concesionario" action="ConcesionarioRegistrar"/>
             </p:panel>
 
             <p:panel header="Exportar Tabla">
-                
+
                 <h:commandLink>
                     <h:graphicImage value="/imgs/pdf.png" alt="Descargar en PDF" width="44" />
                     <p:dataExporter type="pdf" target="con" fileName="Concesionario" />
@@ -54,7 +55,7 @@
                     <h:graphicImage value="/imgs/excel.png" alt="Descargar en excel" width="44"/>
                     <p:dataExporter type="xls" target="con" fileName="Concesionario"/>
                 </h:commandLink>
-                
+
             </p:panel>
         </h:form>
 

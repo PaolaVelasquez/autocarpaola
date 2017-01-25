@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title> Registro Vehiculo </title>
+    </h:head>
+    <h:body>
+        <h:form id="vehiculo" >
+                <h:messages errorClass="errors" showDetail="true"
+                            showSummary="true" warnStyle="color: blue"
+                            infoStyle="color: green" errorStyle="color: red"/>
+                <p:layoutUnit position="north" size="50" resizable="true" closable="true" collapsible="true">
+                </p:layoutUnit>
+                <p:panel header="Registrar Linea">
+                    <p:panelGrid columns="1" >
+                        <p:outputLabel value="Codigo Vehiculo"   />
+                        <p:inputText id="txtcodigo" value="#{vehiculoManagedBean.vehiculo.codigoVehiculo}"/>
+                        <p:outputLabel value="Marca"   />
+                        <p:inputText id="txtmarca" value="#{vehiculoManagedBean.vehiculo.marca}"/>
+                        <p:outputLabel value="Modelo"   />
+                        <p:inputText id="txtmodelo" value="#{vehiculoManagedBean.vehiculo.modelo}"/>
+                        <p:outputLabel value="Precio"   />
+                        <p:inputText id="txtprecio" value="#{vehiculoManagedBean.vehiculo.precio}"  />
+                        <p:outputLabel value="NIT Concesionario"/>
+                        <h:selectOneMenu id="cod" value="#{vehiculoManagedBean.vehiculo.codigoConcesionario}">
+                            <f:selectItems value="#{concesionarioConverter.all}" var="tipo" itemLabel="#{tipo.nit}" ></f:selectItems>
+                        </h:selectOneMenu>
+                    </p:panelGrid>
+                 </p:panel>
+                <p:commandButton id="registro" icon=" ui-icon-disk" value="Guardar" actionListener="#{vehiculoManagedBean.registrarVehiculo()}" />
+                <p:commandButton id="registroCommand2" icon="ui-icon-folder-open" value="Ver"  action="VehiculoListar"/>  
+        </h:form>
+        
+    </h:body>
+</html>

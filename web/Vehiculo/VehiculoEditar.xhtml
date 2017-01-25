@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Editar Vehiculo</title>
+    </h:head>
+    <h:body>
+
+        <f:view>
+
+            <h:form id="vehiculo" >
+
+                <p:fieldset legend="Editar Vehiculo">
+                    <p:panelGrid columns="1" >
+
+                        <p:outputLabel value="Codigo Vehiculo"   />
+                        <p:inputText id="txtcodigo" value="#{vehiculoManagedBean.vehiculo.codigoVehiculo}"  />
+
+                        <p:outputLabel value="Marca"   />
+                        <p:inputText id="txtmarca" value="#{vehiculoManagedBean.vehiculo.marca}"  />
+
+                        <p:outputLabel value="Modelo"   />
+                        <p:inputText id="txtmodelo" value="#{vehiculoManagedBean.vehiculo.modelo}"  />
+
+                        <p:outputLabel value="Precio"   />
+                        <p:inputText id="txtpecio" value="#{vehiculoManagedBean.vehiculo.precio}"  />
+
+                        <p:outputLabel value="Modelo"/>
+                        <h:selectOneMenu id="cod" 
+                                         value="#{vehiculoManagedBean.vehiculo.codigoConcesionario}">
+                            <f:selectItems value="#{concesionarioConverter.all}" var="tipo" itemLabel="#{tipo.nit}" ></f:selectItems>
+
+                        </h:selectOneMenu>
+
+
+                    </p:panelGrid>
+
+                    <p:commandButton id="registrolinea" value="Guardar Edicion" icon="ui-icon-disk" actionListener="#{vehiculoManagedBean.modificarVehiculo()}" />
+                    <p:commandButton id="registrolinea2" value="Ver" icon="ui-icon-folder-open" action="VehiculoListar"/>
+
+                </p:fieldset>
+
+            </h:form>
+        </f:view>
+
+
+
+
+    </h:body>
+</html>
+

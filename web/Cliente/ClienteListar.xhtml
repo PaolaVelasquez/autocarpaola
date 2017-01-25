@@ -16,31 +16,32 @@
             <p:panel header="Tabla Clientes">  
                 
                 <p:dataTable id="cli" var="cliente" value="#{clienteManagedBean.clie}" emptyMessage="No se encontraron registros" paginator="true" rows="8" paginatorPosition="bottom" paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
-                    <p:column  headerText="Id Cliente" id="txtid" filterBy="#{cliente.idCliente}" filterMatchMode="conta" >
-                        <h:outputText  value="#{cliente.idCliente}" />
+                    
+                    <p:column  headerText="ID Cliente" id="txtid" filterMatchMode="contains" >
+                        <h:outputText value="#{cliente.idCliente}" />
                     </p:column>
-
-                    <p:column headerText="Nombre" id="txtnombre" filterBy="#{cliente.nombre}" filterMatchMode="contains">
+                    
+                    <p:column  headerText="Nombre" id="txtnombre" filterMatchMode="contains" >
                         <h:outputText value="#{cliente.nombre}" />
                     </p:column>
 
-                    <p:column headerText="Telefono" id="txttelefono" filterBy="#{cliente.telefono}" filterMatchMode="contains">
+                    <p:column  headerText="Telefono" id="txttelefono" filterMatchMode="contains" >
                         <h:outputText value="#{cliente.telefono}" />
                     </p:column>
 
-                    <p:column headerText="Dirección" id="txtdireccion" filterBy="#{cliente.direccion}" filterMatchMode="contains">
+                    <p:column  headerText="Dirección" id="txtdireccion" filterMatchMode="contains" >
                         <h:outputText value="#{cliente.direccion}" />
                     </p:column>
 
                     <p:column headerText="Acción" exportable="false" width="30%">
                         <p:commandButton value="Borrar" styleClass="ui-confirmdialog-no" icon="ui-icon-trash" action="#{clienteManagedBean.elimarCliente(cliente)}"/>
-                        <p:commandButton value="Modificar" styleClass="ui-confirmdialog-no" icon="ui-icon-pencil" action="editarCliente" actionListener="#{clienteManagedBean.leer(cliente)}"/>
+                        <p:commandButton value="Modificar" styleClass="ui-confirmdialog-no" icon="ui-icon-pencil" action="ClienteEditar" actionListener="#{clienteManagedBean.leer(cliente)}"/>
                     </p:column>
                 </p:dataTable>
             </p:panel>
 
             <p:panel>
-                <p:commandButton id="registroCommand" value="Registrar Cliente" action="registrarCliente"/>
+                <p:commandButton id="registroCommand" value="Registrar Cliente" action="ClienteRegistrar"/>
             </p:panel>
 
             <p:panel header="Exportar Tabla">
